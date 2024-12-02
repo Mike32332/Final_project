@@ -17,3 +17,23 @@ class BookStore:
         del self.books[name]
         print("Book '{name}' sold successfully!")
     
+    def reduce_prices(self):
+        for name, info in self.books.items():
+            info["Price"] *= 0.98
+            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
+    
+    def increase_prices(self):
+        for name, info in self.books.items():
+            info["Price"] *= 1.02
+            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
+    
+    def show_books(self):
+        if not self.books:
+            print("No books in the inventory.")
+        else:
+            for name, info in self.books.items():
+                print(f"\nBook Title: {name}\nAuthor: {info['Author']}")
+                print(f"Buying Price: ${info['Price'] * 0.9:.2f}")
+                print(f"Selling Price: ${info['Price']:.2f}")
+        print(f"\nStore Balance: ${self.cash:.2f}")
+
