@@ -1,15 +1,17 @@
 class BookStore:
     def __init__(self):
         self.books = {} 
-        self.cash = 1000.0  
-    
+        self.cash = 1000.0
+        self.name = ""
+        self.author = "" 
+        self.price = 0
     def add_book(self):
-        name = input("Enter the name of the book: ")
-        author = input("Enter the author of the book: ")
-        price = float(input("Enter the price of the book: "))
-        self.books[name] = {"Author": author, "Price": price}
-        self.cash -= price * 0.9 
-        print("Book '{name}' by {author} added successfully!")
+        self.name = input("Enter the name of the book: ")
+        self.author = input("Enter the author of the book: ")
+        self.price = float(input("Enter the price of the book: "))
+        self.books[self.name] = {"Author": self.author, "Price": self.price}
+        self.cash -= self.price * 0.9 
+        print("Book ",self.name," by ",self.author," added successfully!")
     
     def sell_book(self):
         name = input("Enter the name of the book to sell: ")
@@ -17,3 +19,23 @@ class BookStore:
         del self.books[name]
         print("Book '{name}' sold successfully!")
     
+    def reduce_prices(self):
+        for name, info in self.books.items():
+            info["Price"] *= 0.98
+            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
+    
+    def increase_prices(self):
+        for name, info in self.books.items():
+            info["Price"] *= 1.02
+            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
+    
+    def show_books(self):
+        if not self.books:
+            print("No books in the inventory.")
+        else:
+            for name, info in self.books.items():
+                print("\nBook Title: {name}\nAuthor: {info['Author']}")
+                print("Buying Price: ${info['Price'] * 0.9:.2f}")
+                print("Selling Price: ${info['Price']:.2f}")
+        print("\nStore Balance: ${self.cash:.2f}")
+
