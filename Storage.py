@@ -29,13 +29,5 @@ class BookStore:
             info["Price"] *= 1.02
             print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
     
-    def show_books(self):
-        if not self.books:
-            print("No books in the inventory.")
-        else:
-            for name, info in self.books.items():
-                print("\nBook Title: {name}\nAuthor: {info['Author']}")
-                print("Buying Price: ${info['Price'] * 0.9:.2f}")
-                print("Selling Price: ${info['Price']:.2f}")
-        print("\nStore Balance: ${self.cash:.2f}")
+    
 
