@@ -14,20 +14,16 @@ class BookStore:
         print("Book ",self.name," by ",self.author," added successfully!")
     
     def sell_book(self):
-        name = input("Enter the name of the book to sell: ")
-        self.cash += self.books[name]["Price"]
-        del self.books[name]
-        print("Book '{name}' sold successfully!")
-    
-    def reduce_prices(self):
-        for name, info in self.books.items():
-            info["Price"] *= 0.98
-            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
-    
-    def increase_prices(self):
-        for name, info in self.books.items():
-            info["Price"] *= 1.02
-            print("The new price of '{name}' by {Author} is: ${info['Price']:.2f}")
-    
-    
+        self.name = input("Enter the name of the book to sell: ")
+        self.cash += self.books[self.name]["Price"]
+        del self.books[self.name]
+        print("Book ", self.name," sold successfully!")
 
+    def show_books(self):
+        for a in self.books:
+            print(a, self.books[a]["Author"])
+            print(self.books[a]["Price"])
+        
+    
+   
+    
